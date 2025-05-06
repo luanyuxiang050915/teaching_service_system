@@ -1,7 +1,7 @@
 <?php
-require_once 'config21.php';
+require_once 'config.php';
 if (!isset($_SESSION['userid'])) {
-    header('Location: login21.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -87,7 +87,7 @@ $username = $_SESSION['username'];
 <body>
     <div class="system-container">
         <div class="user-info">
-            欢迎, <?php echo $username; ?> <a href="logout21.php" class="logout-btn">注销</a>
+            欢迎, <?php echo $username; ?> <a href="logout.php" class="logout-btn">注销</a>
         </div>
         <h1 class="text-center mb-4">教学服务系统</h1>
         <table class="main-table">
@@ -96,13 +96,13 @@ $username = $_SESSION['username'];
                     <i class="icon fa-solid fa-user-graduate"></i>
                     <h3 class="title">学生管理</h3>
                     <p class="desc">管理学生基本信息、班级归属等</p>
-                    <a href="student_management21.php" class="btn">进入管理</a>
+                    <a href="student_management.php" class="btn">进入管理</a>
                 </td>
                 <td>
                     <i class="icon fa-solid fa-chalkboard-user"></i>
                     <h3 class="title">班级管理</h3>
                     <p class="desc">管理班级名称、所属系部等信息</p>
-                    <a href="class_management21.php" class="btn">进入管理</a>
+                    <a href="class_management.php" class="btn">进入管理</a>
                 </td>
             </tr>
             <tr>
@@ -110,13 +110,13 @@ $username = $_SESSION['username'];
                     <i class="icon fa-solid fa-building-columns"></i>
                     <h3 class="title">系部管理</h3>
                     <p class="desc">管理学校各系部的基本信息</p>
-                    <a href="department_management21.php" class="btn">进入管理</a>
+                    <a href="department_management.php" class="btn">进入管理</a>
                 </td>
                 <td>
                     <i class="icon fa-solid fa-chalkboard-teacher"></i>
                     <h3 class="title">教师管理</h3>
                     <p class="desc">管理教师信息、职称、薪资等</p>
-                    <a href="teacher_management21.php" class="btn">进入管理</a>
+                    <a href="teacher_management.php" class="btn">进入管理</a>
                 </td>
             </tr>
             <tr>
@@ -124,14 +124,14 @@ $username = $_SESSION['username'];
                     <i class="icon fa-solid fa-book-open"></i>
                     <h3 class="title">课程管理</h3>
                     <p class="desc">管理课程名称、授课教师、学分等</p>
-                    <a href="course_management21.php" class="btn">进入管理</a>
+                    <a href="course_management.php" class="btn">进入管理</a>
                 </td>
                 <td>
                     <i class="icon fa-solid fa-graduation-cap"></i>
                     <!-- <i class="icon fa-soild fa-graduation-cap"></i> -->
                     <h3 class="title">成绩管理</h3>
                     <p class="desc">管理学生成绩及学分记录</p>
-                    <a href="score_management21.php" class="btn">进入管理</a>
+                    <a href="score_management.php" class="btn">进入管理</a>
                 </td>
             </tr>
             <tr>
@@ -139,7 +139,7 @@ $username = $_SESSION['username'];
                     <i class="icon fa-solid fa-chalkboard"></i>
                     <h3 class="title">授课管理</h3>
                     <p class="desc">管理教师授课信息、学期及课程安排</p>
-                    <a href="teaching_management21.php" class="btn">进入管理</a>
+                    <a href="teaching_management.php" class="btn">进入管理</a>
                 </td>
             </tr>
         </table>

@@ -1,7 +1,8 @@
+
 <?php
-require_once 'config21.php';
+require_once 'config.php';
 if (isset($_SESSION['userid'])) {
-    header('Location: index21.php');
+    header('Location: index.php');
     exit;
 }
 
@@ -17,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $insert_sql = "INSERT INTO userinfo (username, password) VALUES ('$username', '$password')";
         if ($conn->query($insert_sql) === true) {
-            header('Location: login21.php');
+            header('Location: login.php');
         } else {
             $error = "注册失败:". $conn->error;
         }
@@ -46,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" name="password" required>
             <input type="submit" value="注册">
         </form>
-        <p>已有账号? <a href="login21.php">登录</a></p>
+        <p>已有账号? <a href="login.php">登录</a></p>
     </div>
 </body>
 </html>

@@ -1,8 +1,9 @@
+
 <?php
 // 导入配置文件
-require_once 'config21.php';
+require_once 'config.php';
 if (!isset($_SESSION['userid'])) {
-    header('Location: login21.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -16,7 +17,7 @@ if (isset($_GET['delete_score'])) {
     $stmt->bind_param("i", $score_id);
     
     if ($stmt->execute()) {
-        echo "<script>alert('成绩记录删除成功！'); window.location.href='score_management21.php';</script>";
+        echo "<script>alert('成绩记录删除成功！'); window.location.href='score_management.php';</script>";
     } else {
         echo "<script>alert('删除失败：" . $conn->error . "');</script>";
     }

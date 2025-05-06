@@ -1,8 +1,9 @@
+
 <?php
 // 导入配置文件
-require_once 'config21.php';
+require_once 'config.php';
 if (!isset($_SESSION['userid'])) {
-    header('Location: login21.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -10,18 +11,22 @@ if (!isset($_SESSION['userid'])) {
 $search_term = "";
 if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['search'])) {
     $search_term = $_GET['search'];
-    $sql = "SELECT * FROM departments WHERE department_name LIKE '%$search_term%'";
+    $sql = "SELECT students.*, classes.class_name
+            FROM students JOIN classes ON students.class_id = classes.class_id
+            WHERE student_name LIKE '%$search_term%' ";
 } else {
-    $sql = "SELECT * FROM departments";
+    $sql = "SELECT students.*, classes.class_name
+        FROM students JOIN classes ON students.class_id = classes.class_id";
 }
 $result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="zh-hans">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>系部管理</title>
+    <title>学生管理</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .add-button {
@@ -38,7 +43,7 @@ $result = $conn->query($sql);
     </style>
 </head>
 <body>
-    <h2>系部管理</h2>
+    <h2>学生管理</h2>
 
     <!-- 查询表单 -->
     <form method="get" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -47,30 +52,37 @@ $result = $conn->query($sql);
         <input type="submit" value="查询">
     </form>
 
-    <!-- 添加系部按钮 -->
-    <div align="right"><a href="add_department.php" class="add-button">添加系部</a></div>
+    <!-- 添加学生按钮 -->
+    <div align="right"><a href="add_student.php" class="add-button">添加学生</a></div>
 
-    <!-- 系部列表 -->
+    <!-- 学生列表 -->
     <table border="1">
         <tr>
             <th>ID</th>
-            <th>系部名称</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>出生日期</th>
+            <th>联系方式</th>
+            <th>班级</th>
             <th>操作</th>
         </tr>
         <?php
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $row["department_id"] . "</td>";
-                echo "<td>" . $row["department_name"] . "</td>";
-                echo "<td><a href='edit_department.php?id=" . $row["department_id"] . "'>编辑</a> | <a href='delete_department.php?id=" . $row["department_id"] . "'>删除</a>";
+                echo "<td>" . $row["student_id"] . "</td>";
+                echo "<td>" . $row["student_name"] . "</td>";
+                echo "<td>" . $row["gender"] . "</td>";
+                echo "<td>" . $row["birth_date"] . "</td>";
+                echo "<td>" . $row["contact_info"] . "</td>";
+                echo "<td>" . $row["class_name"] . "</td>";
+                echo "<td><a href='?delete_student=" . $row["student_id"] . "'>删除</a>&ensp;<a href='edit_student.php?id=" . $row["student_id"] . "'>修改</a>";
                 echo "</td>";
                 echo "</tr>";
             }
         } else {
-            echo "<tr><td colspan='3'>暂无系部信息</td></tr>";
+            echo "<tr><td colspan='7'>暂无学生信息</td></tr>";
         }
         ?>
-    </table>
 </body>
 </html>

@@ -1,8 +1,9 @@
+
 <?php
 // 导入配置文件
-require_once 'config21.php';
+require_once 'config.php';
 if (!isset($_SESSION['userid'])) {
-    header('Location: login21.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -38,7 +39,7 @@ if (isset($_GET['delete_course'])) {
             $stmt->bind_param("i", $course_id);
             
             if ($stmt->execute()) {
-                echo "<script>alert('课程删除成功！'); window.location.href='course_management21.php';</script>";
+                echo "<script>alert('课程删除成功！'); window.location.href='course_management.php';</script>";
             } else {
                 echo "<script>alert('删除失败：" . $conn->error . "');</script>";
             }

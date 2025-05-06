@@ -1,5 +1,6 @@
+
 <?php
-require_once 'config21.php';
+require_once 'config.php';
 if (isset($_SESSION['userid'])) {
     header('Location: index.php');
     exit;
@@ -7,9 +8,7 @@ if (isset($_SESSION['userid'])) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
-    // echo $username;
     $password = $_POST['password'];
-    // echo $password;
 
     $sql = "SELECT * FROM userinfo WHERE username = '$username' AND password = '$password'";
     $result = $conn->query($sql);
@@ -21,7 +20,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         $_SESSION['userid'] = $row['userid'];
         $_SESSION['username'] = $row['username'];
-        // var_dump($_SESSION);
         header('Location: index.php');
     } else {
         $error ="用户名或密码错误，请重试。";
@@ -50,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <input type="password" id="password" name="password" required><br>
             <input type="submit" value="登录">
         </form>
-        <p>还没有账号? <a href="register21.php">注册</a></p>
+        <p>还没有账号? <a href="register.php">注册</a></p>
     </div>
 </body>
 </html>
