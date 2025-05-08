@@ -2,7 +2,7 @@
 <?php
 $servername = 'localhost';
 $username = 'root';
-$password = '';
+$password = 'root';
 $dbname = 'teaching_service_system';
 
 // 创建数据库连接
